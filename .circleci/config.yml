@@ -62,7 +62,7 @@ jobs:
             aws configure set region $AWS_DEFAULT_REGION
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 944095567375.dkr.ecr.us-east-1.amazonaws.com
             docker build -t ciond_project5 .
-            docker tag project5:latest $AWS_ECR/project5:latestdocker tag ciond_project5:latest 944095567375.dkr.ecr.us-east-1.amazonaws.com/ciond_project5:latest
+            docker tag ciond_project5:latest 944095567375.dkr.ecr.us-east-1.amazonaws.com/ciond_project5:latest
       - run:
           name: push-docker-image-to-ecr
           command: |
