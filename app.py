@@ -1,15 +1,9 @@
-from flask import Flask, render_template
-import os
-from flask import send_from_directory
+from flask import Flask
+ 
 app = Flask(__name__)
-
-@app.route('/', methods=['GET','POST'])
+ 
+@app.route("/hello", methods=["GET"])
 def hello():
-    name = "Hello world 1"
-    return render_template('index.html', name=name)
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-app.run(host='0.0.0.0', port='5000', debug=True)
+    return 'Hello World. My name is Le Tran Huu Nhan'
+ 
+app.run(host="0.0.0.0", port=80, debug=True)
