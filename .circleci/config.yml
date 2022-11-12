@@ -94,7 +94,7 @@ jobs:
             --name ciond \ 
             --region us-east-1 \
             --nodegroup-name k8s-cluster \
-            --nodes 2 \
+            --nodes 1 \
             --ssh-access \
             --ssh-public-key myuser \
             --managed
