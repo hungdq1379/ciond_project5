@@ -91,7 +91,7 @@ jobs:
           name: deploy cluster
           command: | 
             eksctl create cluster \
-            --name ciond-project \ 
+            --name ciond \ 
             --region us-east-1 \
             --nodegroup-name k8s-cluster \
             --nodes 2 \
