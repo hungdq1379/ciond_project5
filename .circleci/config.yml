@@ -87,17 +87,17 @@ jobs:
             curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
             mv /tmp/eksctl /usr/local/bin
             eksctl version
-      - run:
-          name: deploy cluster
-          command: | 
-            eksctl create cluster \
-            --name ciond \ 
-            --region us-east-1 \
-            --nodegroup-name k8s-cluster \
-            --nodes 1 \
-            --ssh-access \
-            --ssh-public-key myuser \
-            --managed
+      # - run:
+      #     name: deploy cluster
+      #     command: | 
+      #       eksctl create cluster \
+      #       --name ciond \ 
+      #       --region us-east-1 \
+      #       --nodegroup-name k8s-cluster \
+      #       --nodes 1 \
+      #       --ssh-access \
+      #       --ssh-public-key myuser \
+      #       --managed
 
   deploy-config: 
     docker:
@@ -136,13 +136,13 @@ jobs:
 workflows:
   default:
     jobs:
-      # - linting-code
-      # - build-image:
-      #     requires: [linting-code]
-      # - deploy-infrastructure
-          # requires: [build-image]
-      - deploy-config
-      #     requires: [deploy-infrastructure]
+      - linting-code
+      - build-image:
+          requires: [linting-code]
+      - deploy-infrastructure:
+          requires: [build-image]
+      - deploy-config:
+          requires: [deploy-infrastructure]
       
 
       
