@@ -96,7 +96,7 @@ jobs:
             --nodegroup-name k8s-cluster \
             --nodes 2 \
             --ssh-access \
-            --ssh-public-key myEKSCluster \
+            --ssh-public-key myuser \
             --managed
 
   deploy-config: 
