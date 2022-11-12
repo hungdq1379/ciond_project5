@@ -60,14 +60,14 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws configure set aws_session_token $AWS_SESSION_TOKEN
             aws configure set region $AWS_DEFAULT_REGION
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 374000545310.dkr.ecr.us-east-1.amazonaws.com
-            docker build -t project5 .
-            docker tag project5:latest $AWS_ECR/project5:latest
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 944095567375.dkr.ecr.us-east-1.amazonaws.com
+            docker build -t ciond_project5 .
+            docker tag project5:latest $AWS_ECR/project5:latestdocker tag ciond_project5:latest 944095567375.dkr.ecr.us-east-1.amazonaws.com/ciond_project5:latest
       - run:
           name: push-docker-image-to-ecr
           command: |
             #push image
-            docker push $AWS_ECR/project5:latest    
+            docker push 944095567375.dkr.ecr.us-east-1.amazonaws.com/ciond_project5:latest  
   
   deploy-infrastructure:
     docker:
@@ -137,12 +137,12 @@ workflows:
   default:
     jobs:
       - linting-code
-      - build-image:
-          requires: [linting-code]
-      - deploy-infrastructure:
-          requires: [build-image]
-      - deploy-config:
-          requires: [deploy-infrastructure]
+      # - build-image:
+      #     requires: [linting-code]
+      # - deploy-infrastructure:
+      #     requires: [build-image]
+      # - deploy-config:
+      #     requires: [deploy-infrastructure]
       
 
       
